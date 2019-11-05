@@ -12,7 +12,8 @@ function recursivePropertyChecker(currentElement, previousElements, getNextEleme
         throw new PropertyViolation("property violated", previousElements + [currentElement])
     } else {
         let nextElements = getNextElements(currentElement);
-        nextElements.map((el)=>recursivePropertyChecker(el, previousElements+[currentElement], getNextElements, predicates))
+        previousElements.push(currentElement)
+        nextElements.map((el)=>recursivePropertyChecker(el, previousElements, getNextElements, predicates))
         return;
     }
 }
