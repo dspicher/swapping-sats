@@ -1,18 +1,19 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import PropTypes from 'prop-types';
 
-export default class BityFiatAmount extends React.Component {
+class BityFiatAmount extends React.Component {
 
     async postEstimate(cryptoAmount, isInput) {
         let estimateEndpoint = "https://exchange.api.bity.com/v2/orders/estimate";
-        let crypto = {"currency":"BTC", "amount": (cryptoAmount/10e7).toString()};
-        let fiat = {"currency": "CHF"};
+        let crypto = { "currency": "BTC", "amount": (cryptoAmount / 10e7).toString() };
+        let fiat = { "currency": "CHF" };
         let payload, out_field;
         if (isInput) {
-            payload = {"input":crypto, "output": fiat};
+            payload = { "input": crypto, "output": fiat };
             out_field = "output";
         } else {
-            payload = {"input":fiat, "output": crypto};
+            payload = { "input": fiat, "output": crypto };
             out_field = "input";
         }
         let response = await this.postData(estimateEndpoint, payload);
@@ -20,16 +21,16 @@ export default class BityFiatAmount extends React.Component {
     }
 
     async postData(url = '', data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-        },  
-        body: JSON.stringify(data) 
-    });
-    return await response.json(); 
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        return await response.json();
     }
 
 
@@ -44,17 +45,27 @@ export default class BityFiatAmount extends React.Component {
     }
 
     componentDidMount() {
-        this.postEstimate(this.props.amount, this.props.isOutput).then((result)=>this.setState({amount:result, isLoaded: true}));
+        this.postEstimate(this.props.amount,
+            this.props.isOutput).then((result) => this.setState({ amount: result, isLoaded: true }));
     }
 
     render() {
+        let a = (<div>CHF {this.state.amount}</div>);
         return (
             <div className="BityFiatAmount">
                 {this.state.isLoaded ?
-                     this.state.amount   :
-                     <CircularProgress size={20}/>
+                    a :
+                    <CircularProgress size={20} />
                 }
             </div>
         );
     }
 }
+
+
+BityFiatAmount.propTypes = {
+    amount: PropTypes.number,
+    isOutput: PropTypes.bool
+};
+
+export default BityFiatAmount;
