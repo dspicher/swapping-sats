@@ -1,10 +1,14 @@
 import React from 'react';
 import TransactionOutputs from './TransactionOutputs';
 import TransactionInput from './TransactionInput';
+import TransactionRBF from './TransactionRBF';
 import { withStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import { fetchTransaction } from './util/blockcypher';
+import { transactionIsNotRBF } from './util/recursiveRBFChecker';
+import Container from '@material-ui/core/Container';
+import AppBar from '@material-ui/core/AppBar';
 
 const styles = theme => ({
   '@global': {
@@ -31,7 +35,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outputs: null
+      outputs: null,
+      rbf: null
     };
   }
 
@@ -44,16 +49,26 @@ class App extends React.Component {
           addresses: obj.addresses,
           script_type: obj.script_type,
         }
-      })).then((outs) => this.setState({ outputs: outs }));
+      })).then((outs) => this.setState({
+        outputs: outs
+      }));
+
+    transactionIsNotRBF(txid).then(
+      res => this.setState({ rbf: res })
+    );
   }
 
   render() {
     return (
       <div className="App">
-        <ThemeProvider>
-          <TransactionInput onTxidChange={(txid) => this.handleTxidChange(txid)} />
-          <TransactionOutputs outputs={this.state.outputs} />
-        </ThemeProvider>
+        <AppBar>hi</AppBar>
+        <Container>
+          <ThemeProvider>
+            <TransactionInput onTxidChange={(txid) => this.handleTxidChange(txid)} />
+            <TransactionRBF rbf={this.state.rbf} />
+            <TransactionOutputs outputs={this.state.outputs} />
+          </ThemeProvider>
+        </Container>
       </div>
     );
   }

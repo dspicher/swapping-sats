@@ -8,7 +8,7 @@ async function recursivePropertyChecker(currentElement, getNextElements, predica
         };
     } else {
         let nextElements = await getNextElements(currentElement);
-        if (nextElements == null) {
+        if (nextElements == null || nextElements.length === 0) {
             return { holds: true };
         }
         let resultsForNext = await Promise.all(nextElements
