@@ -10,26 +10,7 @@ import { transactionIsNotRBF } from './util/recursiveRBFChecker';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-const styles = theme => ({
-  '@global': {
-    body: {
-      backgroundColor: theme.white,
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-});
+const styles = theme => ({});
 
 class App extends React.Component {
   constructor(props) {
@@ -63,7 +44,7 @@ class App extends React.Component {
       <div className="App">
 
         <ThemeProvider>
-          <Card>
+          <Card className="main-card">
             <CardContent>
               <TransactionInput onTxidChange={(txid) => this.handleTxidChange(txid)} />
               <TransactionRBF rbf={this.state.rbf} />

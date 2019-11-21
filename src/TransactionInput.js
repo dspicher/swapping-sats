@@ -2,6 +2,12 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    textFld: { width: 1000, height: 40 }
+});
+
 
 class TransactionInput extends React.Component {
 
@@ -33,6 +39,7 @@ class TransactionInput extends React.Component {
                             margin="normal"
                             onChange={(e) => this.handleChange(e)}
                             variant="outlined"
+                            style={styles.textFld}
                         />
                     </Grid>
                 </Grid>
@@ -45,4 +52,4 @@ TransactionInput.propTypes = {
     onTxidChange: PropTypes.func
 };
 
-export default TransactionInput;
+export default withStyles(styles)(TransactionInput);
