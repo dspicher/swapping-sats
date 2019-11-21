@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/swapping-sats/static/css/main.de583310.chunk.css",
+    "main.js": "/swapping-sats/static/js/main.50a44079.chunk.js",
+    "main.js.map": "/swapping-sats/static/js/main.50a44079.chunk.js.map",
+    "runtime-main.js": "/swapping-sats/static/js/runtime-main.7b42ae07.js",
+    "runtime-main.js.map": "/swapping-sats/static/js/runtime-main.7b42ae07.js.map",
+    "static/js/2.3068fbf6.chunk.js": "/swapping-sats/static/js/2.3068fbf6.chunk.js",
+    "static/js/2.3068fbf6.chunk.js.map": "/swapping-sats/static/js/2.3068fbf6.chunk.js.map",
+    "index.html": "/swapping-sats/index.html",
+    "precache-manifest.1942860b7b315878ae80590cdf69db70.js": "/swapping-sats/precache-manifest.1942860b7b315878ae80590cdf69db70.js",
+    "service-worker.js": "/swapping-sats/service-worker.js",
+    "static/css/main.de583310.chunk.css.map": "/swapping-sats/static/css/main.de583310.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7b42ae07.js",
+    "static/js/2.3068fbf6.chunk.js",
+    "static/css/main.de583310.chunk.css",
+    "static/js/main.50a44079.chunk.js"
+  ]
+}

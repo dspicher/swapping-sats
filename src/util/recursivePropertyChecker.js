@@ -1,4 +1,4 @@
-async function recursivePropertyChecker(currentElement, getNextElements, predicates) {
+export async function recursivePropertyChecker(currentElement, getNextElements, predicates) {
     if (predicates.stop(currentElement)) {
         return { holds: true }
     } else if (predicates.fail(currentElement)) {
@@ -23,8 +23,4 @@ async function recursivePropertyChecker(currentElement, getNextElements, predica
             };
         }
     }
-}
-
-module.exports = {
-    recursivePropertyChecker: recursivePropertyChecker
 }

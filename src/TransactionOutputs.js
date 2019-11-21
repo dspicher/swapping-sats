@@ -15,7 +15,7 @@ class TransactionOutputs extends React.Component {
                     <Table >
                         <TableHead>
                             <TableRow>
-                                <TableCell>Adress</TableCell>
+                                <TableCell>Output Address</TableCell>
                                 <TableCell>Satoshis</TableCell>
                                 <TableCell>Bity buy</TableCell>
                                 <TableCell>Bity sell</TableCell>

@@ -17,12 +17,8 @@ function getAncestorTransactions(tx) {
     return Promise.all(tx["vin"].map((input) => blockstream.fetchTransaction(input["txid"])));
 }
 
-async function transactionIsNotRBF(txid) {
+export async function transactionIsNotRBF(txid) {
     let predicates = { stop: isConfirmed, fail: txSignalsRBF }
     let initial = await blockstream.fetchTransaction(txid);
     return await recursivePropertyChecker.recursivePropertyChecker(initial, getAncestorTransactions, predicates);
-}
-
-module.exports = {
-    transactionIsNotRBF: transactionIsNotRBF
 }
