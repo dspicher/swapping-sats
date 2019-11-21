@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3d4ac2fc68108126b0b4e96cf524a45e",
+    "revision": "3f070ac33ef49081f7ae2d865c615b00",
     "url": "/swapping-sats/index.html"
   },
   {
-    "revision": "699a869094c5a107eebd",
+    "revision": "40bc032164b3225dcb9f",
     "url": "/swapping-sats/static/css/main.de583310.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/swapping-sats/static/js/2.3068fbf6.chunk.js"
   },
   {
-    "revision": "699a869094c5a107eebd",
-    "url": "/swapping-sats/static/js/main.50a44079.chunk.js"
+    "revision": "40bc032164b3225dcb9f",
+    "url": "/swapping-sats/static/js/main.38269600.chunk.js"
   },
   {
     "revision": "6fe815c2f703d725b1ce",
