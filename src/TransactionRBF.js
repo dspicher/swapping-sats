@@ -9,7 +9,7 @@ class TransactionInput extends React.Component {
                     (this.props.rbf.holds ?
                         <p>not rbf</p> :
                         (this.props.rbf.counterExample.length === 1 ?
-                            <p>This transaction directly signals RBF</p> :
+                            <p>This transaction signals RBF</p> :
                             <div>
                                 <p>The following unconfirmed ancestor transaction signals RBF</p>
                                 <p>{this.props.rbf.counterExample[this.props.rbf.counterExample.length - 1].txid}</p>
