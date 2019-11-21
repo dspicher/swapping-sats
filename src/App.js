@@ -5,10 +5,10 @@ import TransactionRBF from './TransactionRBF';
 import { withStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
-import { fetchTransaction } from './util/blockcypher';
+import { fetchTransaction } from './util/blockstream';
 import { transactionIsNotRBF } from './util/recursiveRBFChecker';
-import Container from '@material-ui/core/Container';
-import AppBar from '@material-ui/core/AppBar';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const styles = theme => ({
   '@global': {
@@ -42,11 +42,11 @@ class App extends React.Component {
 
   handleTxidChange(txid) {
     fetchTransaction(txid)
-      .then(res => res.outputs)
+      .then(res => res.vout)
       .then(result => result.map((obj) => {
         return {
           value: obj.value,
-          addresses: obj.addresses,
+          addresses: obj.scriptpubkey_address,
           script_type: obj.script_type,
         }
       })).then((outs) => this.setState({
@@ -61,14 +61,16 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <AppBar>hi</AppBar>
-        <Container>
-          <ThemeProvider>
-            <TransactionInput onTxidChange={(txid) => this.handleTxidChange(txid)} />
-            <TransactionRBF rbf={this.state.rbf} />
-            <TransactionOutputs outputs={this.state.outputs} />
-          </ThemeProvider>
-        </Container>
+
+        <ThemeProvider>
+          <Card>
+            <CardContent>
+              <TransactionInput onTxidChange={(txid) => this.handleTxidChange(txid)} />
+              <TransactionRBF rbf={this.state.rbf} />
+              <TransactionOutputs outputs={this.state.outputs} />
+            </CardContent>
+          </Card>
+        </ThemeProvider>
       </div>
     );
   }

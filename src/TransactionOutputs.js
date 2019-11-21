@@ -25,7 +25,7 @@ class TransactionOutputs extends React.Component {
                             {this.props.outputs.map((output, key) => (
                                 <TableRow key={key}>
                                     <TableCell>{output.addresses}</TableCell>
-                                    <TableCell>{output.value}</TableCell>
+                                    <TableCell>{output.value.toLocaleString()}</TableCell>
                                     <TableCell><BityFiatAmount isOutput={false} amount={output.value} /></TableCell>
                                     <TableCell><BityFiatAmount isOutput={true} amount={output.value} /></TableCell>
                                 </TableRow>

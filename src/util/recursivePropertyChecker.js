@@ -1,11 +1,11 @@
 async function recursivePropertyChecker(currentElement, getNextElements, predicates) {
     if (predicates.stop(currentElement)) {
-        return { holds: true };
+        return { holds: true }
     } else if (predicates.fail(currentElement)) {
         return {
             holds: false,
             counterExample: [currentElement]
-        };
+        }
     } else {
         let nextElements = await getNextElements(currentElement);
         if (nextElements == null || nextElements.length === 0) {
@@ -25,4 +25,6 @@ async function recursivePropertyChecker(currentElement, getNextElements, predica
     }
 }
 
-export { recursivePropertyChecker };
+module.exports = {
+    recursivePropertyChecker: recursivePropertyChecker
+}

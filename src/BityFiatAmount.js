@@ -17,7 +17,7 @@ class BityFiatAmount extends React.Component {
             out_field = "input";
         }
         let response = await this.postData(estimateEndpoint, payload);
-        return response[out_field]["amount"];
+        return parseFloat(response[out_field]["amount"]);
     }
 
     async postData(url = '', data = {}) {
@@ -50,11 +50,10 @@ class BityFiatAmount extends React.Component {
     }
 
     render() {
-        let a = (<div>CHF {this.state.amount}</div>);
         return (
             <div className="BityFiatAmount">
                 {this.state.isLoaded ?
-                    a :
+                    <div>{this.state.amount.toLocaleString(navigator.language, { style: 'currency', currency: 'CHF' })}</div> :
                     <CircularProgress size={20} />
                 }
             </div>

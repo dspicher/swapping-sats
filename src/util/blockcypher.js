@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 async function fetchTransaction(txid) {
     let token = 'e587cf89b1774385838ef21b1373f455';
     let apiUrl = 'https://api.blockcypher.com/v1/btc/main/';
@@ -6,7 +8,6 @@ async function fetchTransaction(txid) {
     return tx.json();
   }
 
-
-  export {
-      fetchTransaction
+  module.exports = {
+    fetchTransaction: fetchTransaction
   }

@@ -1,8 +1,8 @@
-import { fetchTransaction } from './blockcypher';
-import {recursivePropertyChecker} from './recursivePropertyChecker';
+var blockstream = require('./blockstream.js');
+var recursivePropertyChecker = require('./recursivePropertyChecker');
 
 function isConfirmed(tx) {
-    return tx["block_height"] > 0;
+    return tx["status"]["confirmed"];
 }
 
 function signalsRBF(input) {
@@ -10,23 +10,19 @@ function signalsRBF(input) {
 }
 
 function txSignalsRBF(tx) {
-    return tx["inputs"].map(signalsRBF).some(a=>a);
+    return tx["vin"].map(signalsRBF).some(a => a);
 }
 
 function getAncestorTransactions(tx) {
-    return Promise.all(tx["inputs"].map((input) => fetchTransaction(input["prev_hash"])));
+    return Promise.all(tx["vin"].map((input) => blockstream.fetchTransaction(input["txid"])));
 }
 
 async function transactionIsNotRBF(txid) {
-    let predicates = {stop: isConfirmed, fail: txSignalsRBF}
-    let initial = await fetchTransaction(txid);
-    return await recursivePropertyChecker(initial, getAncestorTransactions, predicates);        
+    let predicates = { stop: isConfirmed, fail: txSignalsRBF }
+    let initial = await blockstream.fetchTransaction(txid);
+    return await recursivePropertyChecker.recursivePropertyChecker(initial, getAncestorTransactions, predicates);
 }
 
-
-
- 
-export {
-    transactionIsNotRBF,
-    txSignalsRBF
+module.exports = {
+    transactionIsNotRBF: transactionIsNotRBF
 }

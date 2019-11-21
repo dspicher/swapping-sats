@@ -5,6 +5,8 @@
                "console": false,
                "Map": false, 
                "Promise": false, 
-               "it": false 
+               "it": false,
+               "require": false,
+               "navigator": false
                }
 }
